@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 
 class DashboardPostController extends Controller
@@ -62,7 +64,7 @@ class DashboardPostController extends Controller
 
         Post::create($validatedData);
 
-        return redirect('/dashboard/post')->with('success', 'New post has been added!');
+        return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
 
     /**
@@ -129,7 +131,7 @@ class DashboardPostController extends Controller
         Post::where('id', $post->id)
             ->update($validatedData);
 
-        return redirect('/dashboard/post')->with('success', 'Post has been updated!');
+        return redirect('/dashboard/posts')->with('success', 'Post has been updated!');
 
     }
 
@@ -146,7 +148,7 @@ class DashboardPostController extends Controller
             }
         Post::destroy($post->id);
 
-        return redirect('/dashboard/post')->with('success', 'Post has been deleted!');
+        return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
     }
 
     public function checkSlug(Request $request)
